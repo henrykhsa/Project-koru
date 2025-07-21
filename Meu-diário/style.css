@@ -21,3 +21,9 @@
         --brpost-color: #cfd0d1;
     }
 }
+
+body {
+    background-color: var(--background-color);
+    font-family: georgia, serif;
+    margin: 0;
+}
