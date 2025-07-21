@@ -27,3 +27,12 @@ body {
     font-family: georgia, serif;
     margin: 0;
 }
+
+.header {
+    background-color: var(--bheader-color);
+    color: var(--txtheader-color);
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 4px solid var(--bpost-color);
+}
