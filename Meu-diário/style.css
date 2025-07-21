@@ -36,3 +36,14 @@ body {
     text-align: center;
     border-bottom: 4px solid var(--bpost-color);
 }
+
+section {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 2px;
+}
+
+section h2 {
+    color: var(--tlsection-color);
+}
