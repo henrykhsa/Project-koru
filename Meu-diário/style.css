@@ -1,0 +1,23 @@
+:root {
+        --background-color: #e6e9ea;
+        --bheader-color: #e6e9ea;
+        --txtheader-color: #694b21;
+        --bpost-color: #af9d6e;
+        --txtpost-color: #121510;
+        --tlsection-color: #694b21;
+        --tmpost-color: #301a17;
+        --brpost-color: #694b21;
+    }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #222b36;
+        --bheader-color: #373230;
+        --txtheader-color: #cfd0d1;
+        --bpost-color: #59483e;
+        --txtpost-color: #cfd0d1;
+        --tlsection-color: #a7aaab;
+        --tmpost-color: #edd2b0;
+        --brpost-color: #cfd0d1;
+    }
+}
