@@ -1,0 +1,12 @@
+{
+  "name": "modulos-em-nodejs",
+  "version": "1.0.0",
+  "description": "Praticando modulos.",
+  "main": "Modulos/index.js",
+
+  "scripts": {
+    "start" : "node index.js"
+  },
+  "author": "Henrique S. Araujo",
+  "type": "module"
+}
