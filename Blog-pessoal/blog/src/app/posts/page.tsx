@@ -1,10 +1,12 @@
 import PostCard from '@/components/PostCard';
 import { getSortedPostsData } from '@/lib/posts';
 import { PostPreview } from '@/types/blog';
+import Link from 'next/link';
 
-export default function PostsPage() {
+
+export default async function PostsPage() {
   // Busca todas as postagens (sem limite)
-  const allPostsData: PostPreview[] = getSortedPostsData();
+  const allPostsData: PostPreview[] = await getSortedPostsData();
 
   return (
     <main className="container mx-auto px-4 py-8">

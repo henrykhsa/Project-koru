@@ -23,7 +23,6 @@ export default function RootLayout({
     <html lang="pt-br">
       <body>
         <div className="flex flex-col min-h-screen">
-          {/* 3. Componentes de UI que aparecem em todas as páginas */}
           <Header />
           <main className="flex-grow">
             {children}

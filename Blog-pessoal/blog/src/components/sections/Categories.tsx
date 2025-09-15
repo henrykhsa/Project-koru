@@ -1,5 +1,3 @@
-// components/sections/Categories.tsx
-
 import Link from 'next/link';
 import { getCategoriesWithCounts } from '@/lib/categories';
 

@@ -1,4 +1,4 @@
-// 1. Interface base que define a estrutura de um post
+// Interface base que define a estrutura de um post
 export interface PostData {
     slug: string;
     title: string;
