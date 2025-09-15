@@ -1,4 +1,4 @@
-import PostCard from '@/components/postCard';
+import PostCard from '@/components/PostCard';
 import { RecentPostsProps } from '@/types/blog';
 
 export default function RecentPosts({ posts }: RecentPostsProps) {

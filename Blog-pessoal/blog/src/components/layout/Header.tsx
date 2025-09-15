@@ -16,12 +16,16 @@ export default function Header() {
         </Link>
         {/* Links de navegação */}
         <nav className="hidden md:flex space-x-6">
+          <Link href="/posts" className="hover:text-gray-300 transition-colors">
+          Todas as Postagens
+          </Link>
           <Link href="/sobre" className="hover:text-gray-300 transition-colors">
             Sobre
           </Link>
           <Link href="/contato" className="hover:text-gray-300 transition-colors">
             Contato
           </Link>
+          
         </nav>
       </div>
     </header>

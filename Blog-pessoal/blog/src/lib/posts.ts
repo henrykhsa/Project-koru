@@ -1,12 +1,57 @@
-import { PostData } from '@/types/blog';
+// lib/posts.ts
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { Post, PostPreview } from '@/types/blog';
 
-export function getSortedPostsData(): PostData[] {
-  const posts: PostData[] = [
-    { slug: 'post-5', title: 'Como me mantive motivado na programação', date: '2025-09-12', excerpt: 'História sobre como lidei com o burnout...' },
-    { slug: 'post-4', title: 'Meu primeiro projeto em Next.js', date: '2025-08-25', excerpt: 'Compartilho os aprendizados do meu projeto...' },
-    { slug: 'post-3', title: 'Aprendendo a dizer não', date: '2025-07-15', excerpt: 'Sobre a importância de gerenciar expectativas...' },
-    { slug: 'post-2', title: 'O poder dos projetos paralelos', date: '2025-06-01', excerpt: 'Como um projeto pessoal pode impulsionar a carreira...' },
-    { slug: 'post-1', title: 'Por que comecei a programar', date: '2025-05-10', excerpt: 'Minha história de como a tecnologia mudou minha vida...' },
-  ];
-  return posts;
+const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+
+export function getPostBySlug(slug: string): Post | null {
+  const fullPath = path.join(postsDirectory, `${slug}.mdx`);
+  if (!fs.existsSync(fullPath)) {
+    return null;
+  }
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const matterResult = matter(fileContents);
+  
+  // Converte a data para uma string antes de retornar
+  const dateString = matterResult.data.date.toLocaleDateString('pt-BR');
+
+  return {
+    slug,
+    title: matterResult.data.title,
+    date: dateString,
+    excerpt: matterResult.data.excerpt,
+    content: matterResult.content,
+  };
+}
+
+export function getSortedPostsData(): PostPreview[] {
+  const fileNames = fs.readdirSync(postsDirectory);
+  
+  const allPostsData = fileNames.map((fileName) => {
+    const slug = fileName.replace(/\.mdx$/, '');
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    
+    // Converte o objeto de data para uma string no formato "dia/mês/ano"
+    const dateString = matterResult.data.date.toLocaleDateString('pt-BR');
+    
+    return {
+      slug,
+      title: matterResult.data.title,
+      date: dateString,
+      excerpt: matterResult.data.excerpt,
+    };
+  });
+
+  return allPostsData.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 }
