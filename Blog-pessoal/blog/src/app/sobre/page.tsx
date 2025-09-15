@@ -9,7 +9,7 @@ export default function AboutPage() {
       <section className="bg-white p-8 rounded-lg shadow-md my-12">
         <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
           <img
-            src="/seu-avatar.jpg"
+            src="/photo.jpg"
             alt="Sua foto de perfil"
             className="w-40 h-40 rounded-full object-cover"
           />
