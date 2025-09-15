@@ -1,33 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  /* Novas cores personalizadas */
-  --roxo: #8B5CF6;
-  --rosa: #C04E67;
-  --azul: #1C2E46;
+  --roxo: #6900be; /* Roxo para detalhes ou destaques secundários */
+  --rosa: #ff2252; /* Rosa para CTAs (Call-to-Actions) ou alertas */
+  --azul: #0056c7; /* Azul para links e elementos interativos principais */
 
   /* Cores do tema (modo claro) */
-  --background: #ffffff;
-  --foreground: var(--azul);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --background: #f7f7f7; /* Um branco suave para não cansar a vista */
+  --foreground: #1f2937; /* Um cinza escuro para o texto, melhor que o azul para leitura */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Cores do tema (modo escuro) */
-    --background: var(--azul);
-    --foreground: #ededed;
+    --background: #111827; /* Um fundo escuro, mas não preto puro */
+    --foreground: #d1d5db; /* Um cinza claro para o texto no modo escuro */
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif; /* Usando a fonte Geist Sans */
 }

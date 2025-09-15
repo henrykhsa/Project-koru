@@ -9,7 +9,7 @@ export default function PostCard({ post, isFeatured = false }: PostCardProps) {
   return (
     <Link href={`/posts/${post.slug}`} className="block">
       <article className={cardClasses}>
-        <h3 className={`font-semibold ${isFeatured ? 'text-2xl text-secondary' : 'text-xl text-gray-800'}`}>
+        <h3 className={`font-semibold ${isFeatured ? 'text-2xl' : 'text-xl'} text-gray-800`}>
           {post.title}
         </h3>
         <p className="text-sm text-gray-500 mt-1">{post.date}</p>
