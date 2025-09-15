@@ -8,7 +8,8 @@ import { PostPreview } from '@/types/blog';
 export default function Home() {
   const allPostsData: PostPreview[] = getSortedPostsData();
   const latestPost = allPostsData[0];
-  const recentPosts = allPostsData.slice(0, 4);
+  
+  const recentPosts = allPostsData.slice(1, 5);
   
   return (
     <main className="container mx-auto px-4 py-8">

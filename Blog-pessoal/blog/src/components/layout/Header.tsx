@@ -22,10 +22,6 @@ export default function Header() {
           <Link href="/sobre" className="hover:text-gray-300 transition-colors">
             Sobre
           </Link>
-          <Link href="/contato" className="hover:text-gray-300 transition-colors">
-            Contato
-          </Link>
-          
         </nav>
       </div>
     </header>
