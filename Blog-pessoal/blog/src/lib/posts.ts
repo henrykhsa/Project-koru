@@ -1,44 +1,40 @@
 // lib/posts.ts
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { Post, PostPreview } from '@/types/blog';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
-export function getPostBySlug(slug: string): Post | null {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  if (!fs.existsSync(fullPath)) {
+  try {
+    const fileContents = await fs.readFile(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    const dateString = matterResult.data.date.toLocaleDateString('pt-BR');
+
+    return {
+      slug,
+      title: matterResult.data.title,
+      date: dateString,
+      excerpt: matterResult.data.excerpt,
+      content: matterResult.content,
+    };
+  } catch (error) {
     return null;
   }
-
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const matterResult = matter(fileContents);
-  
-  // Converte a data para uma string antes de retornar
-  const dateString = matterResult.data.date.toLocaleDateString('pt-BR');
-
-  return {
-    slug,
-    title: matterResult.data.title,
-    date: dateString,
-    excerpt: matterResult.data.excerpt,
-    content: matterResult.content,
-  };
 }
 
-export function getSortedPostsData(): PostPreview[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+export async function getSortedPostsData(): Promise<PostPreview[]> {
+  const fileNames = await fs.readdir(postsDirectory);
   
-  const allPostsData = fileNames.map((fileName) => {
+  const allPostsDataPromises = fileNames.map(async (fileName) => {
     const slug = fileName.replace(/\.mdx$/, '');
     const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const fileContents = await fs.readFile(fullPath, 'utf8');
     const matterResult = matter(fileContents);
-    
-    // Converte o objeto de data para uma string no formato "dia/mês/ano"
     const dateString = matterResult.data.date.toLocaleDateString('pt-BR');
-    
+
     return {
       slug,
       title: matterResult.data.title,
@@ -46,6 +42,8 @@ export function getSortedPostsData(): PostPreview[] {
       excerpt: matterResult.data.excerpt,
     };
   });
+
+  const allPostsData = await Promise.all(allPostsDataPromises);
 
   return allPostsData.sort((a, b) => {
     if (a.date < b.date) {

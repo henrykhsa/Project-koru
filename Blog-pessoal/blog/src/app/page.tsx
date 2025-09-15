@@ -5,10 +5,11 @@ import RecentPosts from '@/components/sections/RecentPosts';
 import Categories from '@/components/sections/Categories';
 import { PostPreview } from '@/types/blog';
 
-export default function Home() {
-  const allPostsData: PostPreview[] = getSortedPostsData();
-  const latestPost = allPostsData[0];
+export default async function Home() {
   
+  const allPostsData: PostPreview[] = await getSortedPostsData();
+  
+  const latestPost = allPostsData[0];
   const recentPosts = allPostsData.slice(1, 5);
   
   return (

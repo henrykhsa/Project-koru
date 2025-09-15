@@ -32,3 +32,7 @@ export interface LatestPostProps {
 export interface RecentPostsProps {
     posts: PostData[]; // 'PostData[]' é um array de objetos do tipo PostData
 }
+
+export interface LikeButtonProps {
+    slug: string;
+}
