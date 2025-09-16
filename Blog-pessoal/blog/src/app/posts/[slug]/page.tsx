@@ -1,11 +1,20 @@
 import { getPostBySlug } from '@/lib/posts';
 import LikeButton from '@/components/LikeButton';
+import { notFound } from 'next/navigation';
 
 export default async function PostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(await params.slug);
+
+  let post;
+  const awaitedParams = await params; // Aguarda a resolução dos parâmetros
+  try {
+    post = await getPostBySlug(awaitedParams.slug);
+  } catch (error) {
+    console.error("Erro ao buscar o post:", error);
+    notFound();
+  }
 
   if (!post) {
-    return <div>Post não encontrado!</div>; 
+    notFound();
   }
 
   return (

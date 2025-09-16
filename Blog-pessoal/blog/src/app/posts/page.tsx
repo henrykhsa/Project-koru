@@ -1,7 +1,6 @@
 import PostCard from '@/components/PostCard';
 import { getSortedPostsData } from '@/lib/posts';
 import { PostPreview } from '@/types/blog';
-import Link from 'next/link';
 
 
 export default async function PostsPage() {
